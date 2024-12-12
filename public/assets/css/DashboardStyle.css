@@ -1,0 +1,47 @@
+.navbar {
+    display: flex;
+
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38.73px;
+}
+
+.admin-inc {
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+}
+
+.header {
+    border-left: 1px solid #d9d9d9;
+    /* Top, Right, Bottom, Left */
+    padding: 0px 0px 0px 40px;
+}
+
+a:link {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    padding: 36px 51px;
+}
+
+a:hover {
+    background-color: #003d55;
+}
+
+.header-title {
+    font-family: Inter;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58.09px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #006b95;
+}
