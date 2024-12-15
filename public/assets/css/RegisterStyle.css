@@ -1,85 +1,86 @@
 .login-text {
-  font-family: Inter;
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 48.41px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  width: 295px;
-  height: 77px;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48.41px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    width: 295px;
+    height: 77px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .regis-text {
-  font-family: Inter;
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 48.41px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #7f7f7f;
-  display: flex;
-  align-items: center;
-  border-radius: 30px;
-  justify-content: center;
-  background-color: #006b95;
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48.41px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #7f7f7f;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    justify-content: center;
+    background-color: #006b95;
+    padding: 0 5rem;
 }
 
 .username-input {
-  font-family: Inter;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29.05px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  border-radius: 15px;
-  padding: 23px 45px;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29.05px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    border-radius: 15px;
+    padding: 23px 45px;
 }
 
 .pass-input {
-  font-family: Inter;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29.05px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  border-radius: 15px;
-  padding: 23px 45px;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29.05px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    border-radius: 15px;
+    padding: 23px 45px;
 }
 
-.button-login {
-  background-color: #006b95;
-  width: 551px;
-  height: 75px;
-  top: 618px;
-  left: 444px;
-  gap: 0px;
-  border-radius: 15px;
-  border: none;
-  font-family: Inter;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29.05px;
+.button-register {
+    background-color: #006b95;
+    width: 100%;
+    height: 75px;
+    top: 618px;
+    left: 444px;
+    gap: 0px;
+    border-radius: 15px;
+    border: none;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29.05px;
 }
 
 .register-anchor {
-  color: #006b95;
-  text-decoration: none;
+    color: #006b95;
+    text-decoration: none;
 }
 
 .icon-user {
-  width: 104px;
-  height: 104px;
-  top: 102px;
-  left: 699px;
-  padding: 8.67px 17.33px 8.67px 17.33px;
-  border: 1px solid #d9d9d9;
-  border-radius: 100px;
+    width: 104px;
+    height: 104px;
+    top: 102px;
+    left: 699px;
+    padding: 8.67px 17.33px 8.67px 17.33px;
+    border: 1px solid #d9d9d9;
+    border-radius: 100px;
 }
