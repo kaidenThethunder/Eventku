@@ -25,27 +25,32 @@
                 <div class="p-5">
                     <div style="border: 1px solid #d9d9d9; border-radius: 30px">
                         <div class="d-flex justify-content-center gap-3">
-                            <div class="login-text text-light" style="background-color: #006b95">
-                                Login
-                            </div>
+                            <div class="login-text text-light" style="background-color: #006b95;">Login</div>
                             <div class="regis-text px-5">Register</div>
                         </div>
                     </div>
 
-                    <div class="d-flex flex-column gap-4 py-5">
-                        
-                        <input type="email" class="form-control username-input" id="exampleFormControlInput1"
-                            placeholder="Masukkan Username" />
+                    @if (session('success'))
+                        <script>
+                            alert("{{ session('success') }}");
+                        </script>
+                    @endif
 
-                        <input type="password" id="inputPassword5" class="form-control pass-input"
-                            aria-describedby="Masukkan Password" placeholder="Masukkan Username" />
-                        
-                        <button class="button-login text-white">Login</button>
-                        <div>
-                            Belum punya akun?
-                            <a href="/register" class="register-anchor">Daftar Sekarang</a>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="d-flex flex-column gap-4 py-5">
+                            <input type="email" name="email" class="form-control username-input"
+                                id="exampleFormControlInput1" placeholder="Masukkan Email" required />
+                            <input type="password" name="password" id="inputPassword5" class="form-control pass-input"
+                                placeholder="Masukkan Password" required />
+                            <button type="submit" class="button-login text-white">Login</button>
+                            <div>
+                                Belum punya akun?
+                                <a href="/register" class="register-anchor">Daftar Sekarang</a>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </section>
