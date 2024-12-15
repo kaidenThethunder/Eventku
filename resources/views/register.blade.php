@@ -45,8 +45,8 @@
 
                         <button class="button-login text-white">Login</button>
                         <div>
-                            Belum punya akun?
-                            <a href="#" class="register-anchor">Daftar Sekarang</a>
+                            Sudah punya akun?
+                            <a href="/login" class="register-anchor">Masuk Sekarang</a>
                         </div>
                     </div>
                 </div>

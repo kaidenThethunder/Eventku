@@ -33,16 +33,17 @@
                     </div>
 
                     <div class="d-flex flex-column gap-4 py-5">
+                        
                         <input type="email" class="form-control username-input" id="exampleFormControlInput1"
                             placeholder="Masukkan Username" />
 
                         <input type="password" id="inputPassword5" class="form-control pass-input"
                             aria-describedby="Masukkan Password" placeholder="Masukkan Username" />
-
+                        
                         <button class="button-login text-white">Login</button>
                         <div>
                             Belum punya akun?
-                            <a href="#" class="register-anchor">Daftar Sekarang</a>
+                            <a href="/register" class="register-anchor">Daftar Sekarang</a>
                         </div>
                     </div>
                 </div>

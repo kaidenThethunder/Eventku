@@ -45,3 +45,104 @@ a:hover {
     text-decoration-skip-ink: none;
     color: #006b95;
 }
+
+.title{
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.value{
+    font-family: Inter;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 29.05px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}
+
+.card{
+    border-radius: 999px;
+}
+
+.table-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan untuk kontainer tabel */
+}
+
+.table th, .table td {
+    text-align: center; /* Teks di tengah */
+    vertical-align: middle; /* Vertikal rata tengah */
+}
+
+.action-icons i {
+    cursor: pointer; /* Tampilkan pointer pada ikon */
+    margin: 0 5px; /* Jarak antar ikon */
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Warna biru saat hover pada ikon */
+}
+
+
+
+.table-container h5 {
+    color: #006B95; /* Warna heading tabel */
+}
+
+
+.action-icons button {
+    border: none;
+    background-color:#bdbdbd ; /* Hilangkan background tombol */
+    cursor: pointer; /* Tampilkan pointer pada hover */
+    padding: 5px; /* Tambahkan sedikit padding */
+}
+
+.action-icons button:hover img {
+    filter: brightness(0.8); /* Efek hover pada ikon */
+}
+
+.action-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+
+    .modal-content {
+        border-radius: 12px;
+    }
+
+    .modal-header {
+        border-bottom: none;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .modal-body input,
+    .modal-body textarea {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .modal-body button {
+        background-color: #006B95;
+        color: white;
+        font-weight: bold;
+    }
+
+    .modal-body button:hover {
+        background-color: #00567A;
+    }
+
+

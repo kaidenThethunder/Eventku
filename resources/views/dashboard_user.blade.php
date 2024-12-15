@@ -84,7 +84,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="/login">Logout</a></li>
                         </ul>
                     </div>
                     <img src="logoprofil.svg" alt="Profile Logo" class="profile-logo">
@@ -99,13 +99,13 @@
                 <div class="col-md-6">
                     <div class="card text-center p-4">
                         <h5 class="fw-bold">Jumlah Event</h5>
-                        <h1 class="display-4">14</h1>
+                        <h1 class="display-4">1</h1>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card text-center p-4">
                         <h5 class="fw-bold">Jumlah Event Yang di Daftar</h5>
-                        <h1 class="display-4">07</h1>
+                        <h1 class="display-4">1</h1>
                     </div>
                 </div>
             </div>
@@ -210,3 +210,5 @@
     </script>
 </body>
 </html>
+
+
