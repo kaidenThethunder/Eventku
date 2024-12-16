@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\RegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +19,29 @@ use App\Http\Controllers\RegisterController;
 // Public Routes
 Route::view('/login', 'login')->name('login.form');
 Route::view('/register', 'register');
+Route::view('/kelolaevent', '/admin/kelola_event');
+Route::view('/tambahevent', '/admin/tambah_event');
 
 // Dashboard Routes
 Route::middleware(['auth'])->group(function () {
-    Route::view('/dashboard_admin', 'dashboard_admin')->name('dashboard_admin');
-    Route::view('/', 'dashboard_user')->name('dashboard_user');
+    Route::view('/dashboard_admin', '/admin/dashboard_admin')->name('dashboard_admin');
+    Route::view('/', '/user/dashboard_user')->name('dashboard_user');
 });
 
 // Authentication Routes
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register', [RegisterController::class, 'register']);
+
+// Event Routes
+Route::resource('events', EventController::class);
+
+// Registration Routes
+Route::resource('registrations', RegistrationController::class);
+
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+});
+    // Route untuk menampilkan form tambah event dan menyimpan event
+Route::post('events', [EventController::class, 'store'])->name('admin.event.store');
+Route::post('events', [EventController::class, 'index'])->name('admin.event.index');
+
