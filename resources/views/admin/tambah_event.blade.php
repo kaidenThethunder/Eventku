@@ -13,7 +13,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet">
-        
+
     </head>
 
     <body>
@@ -26,20 +26,20 @@
                 </div>
 
                 <div class="link-nav d-flex flex-column align-items-center text-white w-100">
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Dashboard</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Tambah Event</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Kelola Event</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Partisipan</a>
+                    <a class="text-white border-bottom w-100" href="/index">Dashboard</a>
+                    <a class="text-white border-bottom w-100" href="/tambahevent">Tambah Event</a>
+                    <a class="text-white border-bottom w-100" href="">Kelola Event</a>
+                    <a class="text-white border-bottom w-100" href="">Partisipan</a>
                 </div>
             </div>
 
             <div class="w-100">
                 <div class="d-flex justify-content-between align-items-center" style="height: 125px">
-                
+
                     <div class="content header-title ms-3">
                         Tambah Event
                     </div>
-                   
+
                     <div class="d-flex align-items-center">
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -70,7 +70,7 @@
                                 style="max-width: 600px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                 <h5 class="fw-bold text-center mb-4">Tambah Event</h5>
                                 <form action="{{ route('admin.event.store') }}" method="POST">
-                                @csrf
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="eventName" class="form-label">Masukkan Nama Event</label>
                                         <input type="text" class="form-control" name="nama_event" required>
@@ -80,8 +80,9 @@
                                         <input type="text" class="form-control" name="lokasi_event" required>
                                     </div>
                                     <div class="mb-3">
-                                    <label for="tanggal" class="form-label">Tanggal</label>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                                        <label for="tanggal" class="form-label">Tanggal</label>
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                            required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="ticketPrice" class="form-label">Harga Tiket</label>
@@ -97,13 +98,9 @@
                         </div>
                     </div>
 
-                    
-
                 </div>
             </div>
         </section>
-
-        
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

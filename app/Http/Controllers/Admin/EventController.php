@@ -30,16 +30,16 @@ class EventController extends Controller
             'tanggal' => $request->tanggal,
             'harga_tiket' => $request->harga_tiket,
             'lokasi_event' => $request->lokasi_event,
-            
+
         ]);
 
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil dibuat!');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil dibuat!');
     }
 
     // Menampilkan form untuk mengedit event
     public function edit(Event $event)
     {
-        return view('admin.events.edit', compact('event'));
+        return view('admin.event.edit', compact('event'));
     }
 
     // Mengupdate data event
@@ -53,13 +53,13 @@ class EventController extends Controller
             'lokasi_event' => $request->lokasi_event,
         ]);
 
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diupdate!');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil diupdate!');
     }
 
     // Menghapus event
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil dihapus!');
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil dihapus!');
     }
 }

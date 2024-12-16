@@ -39,9 +39,10 @@ Route::resource('events', EventController::class);
 // Registration Routes
 Route::resource('registrations', RegistrationController::class);
 
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-});
-    // Route untuk menampilkan form tambah event dan menyimpan event
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {});
+// Route untuk menampilkan form tambah event dan menyimpan event
 Route::post('events', [EventController::class, 'store'])->name('admin.event.store');
-Route::post('events', [EventController::class, 'index'])->name('admin.event.index');
 
+Route::get('index', [EventController::class, 'index'])->name('admin.event.index');
+
+Route::resource('admin/events', EventController::class);
