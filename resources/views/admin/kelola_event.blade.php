@@ -13,7 +13,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet">
-        
+
     </head>
 
     <body>
@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="link-nav d-flex flex-column align-items-center text-white w-100">
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Dashboard</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Tambah Event</a>
+                    <a class="text-white border-bottom w-100" href="/index">Dashboard</a>
+                    <a class="text-white border-bottom w-100" href="/tambahevent">Tambah Event</a>
                     <a class="text-white border-bottom w-100" href="javascript:void(0);">Kelola Event</a>
                     <a class="text-white border-bottom w-100" href="javascript:void(0);">Partisipan</a>
                 </div>
@@ -77,27 +77,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Konser MCR</td>
-                                            <td>GBK</td>
-                                            <td>27 Januari 2025</td>
-                                            <td>700000</td>
-                                            <td>Konser Band Legendaris</td>
-                                            <td class="action-icons">
-                                                <button class="btn-edit rounded-3" data-bs-toggle="modal"
-                                                    data-bs-target="#editEventModal"><img src="pencil.svg"
-                                                        alt="Edit" style="width: 20px; height: 20px;"></button>
-                                                <button class="btn-hapus rounded-3"><img src="delete.svg"
-                                                        alt="hapus" style="width: 20px; height: 20px;"></button>
-                                            </td>
-                                        </tr>
-                                        <!-- Tambahkan data lainnya jika perlu -->
+                                        @foreach ($events as $event)
+                                            <tr>
+                                                <td>{{ $event->nama_event }}</td>
+                                                <td>{{ $event->lokasi_event }}</td>
+                                                <td>{{ $event->tanggal }}</td>
+                                                <td>{{ number_format($event->harga_tiket, 0, ',', '.') }}</td>
+                                                <td>{{ $event->deskripsi }}</td>
+                                                <td class="action-icons d-flex gap-4 justify-content-center">
+                                                    <!-- Tombol Edit -->
+                                                    <button class="btn-edit rounded-3" data-bs-toggle="modal"
+                                                        data-bs-target="#editEventModal" data-id="{{ $event->id }}"
+                                                        data-nama="{{ $event->nama_event }}"
+                                                        data-lokasi="{{ $event->lokasi_event }}"
+                                                        data-tanggal="{{ $event->tanggal }}"
+                                                        data-harga="{{ $event->harga_tiket }}"
+                                                        data-deskripsi="{{ $event->deskripsi }}">
+                                                        <img src="pencil.svg" alt="Edit"
+                                                            style="width: 20px; height: 20px;">
+                                                    </button>
+
+                                                    <!-- Tombol Hapus -->
+                                                    <form action="{{ route('events.destroy', $event->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn-hapus rounded-3"
+                                                            onclick="return confirm('Yakin ingin menghapus event ini?')">
+                                                            <img src="delete.svg" alt="Hapus"
+                                                                style="width: 20px; height: 20px;">
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel"
@@ -110,40 +130,46 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="editEventForm">
+                                    <form id="editEventForm" method="POST"
+                                        action="{{ route('events.update', $event->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <!-- Input fields -->
                                         <div class="mb-3">
-                                            <input type="text" class="form-control" id="editEventName"
-                                                placeholder="Masukkan Nama Event" required>
+                                            <input type="text" name="nama_event" class="form-control"
+                                                id="editEventName" placeholder="Masukkan Nama Event" required>
                                         </div>
                                         <div class="mb-3">
-                                            <input type="text" class="form-control" id="editEventLocation"
-                                                placeholder="Lokasi Event" required>
+                                            <input type="text" name="lokasi_event" class="form-control"
+                                                id="editEventLocation" placeholder="Lokasi Event" required>
                                         </div>
                                         <div class="mb-3">
-                                            <input type="date" class="form-control" id="editEventDate"
-                                                placeholder="Tanggal" required>
+                                            <input type="date" name="tanggal" class="form-control"
+                                                id="editEventDate" required>
                                         </div>
                                         <div class="mb-3">
-                                            <input type="number" class="form-control" id="editEventPrice"
-                                                placeholder="Harga Tiket" required>
+                                            <input type="number" name="harga_tiket" class="form-control"
+                                                id="editEventPrice" placeholder="Harga Tiket" required>
                                         </div>
                                         <div class="mb-3">
-                                            <textarea class="form-control" id="editEventDescription" rows="3" placeholder="Deskripsi Event" required></textarea>
+                                            <textarea name="deskripsi" class="form-control" id="editEventDescription" rows="3"
+                                                placeholder="Deskripsi Event" required></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    
+
 
                 </div>
             </div>
         </section>
 
-        
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
