@@ -53,3 +53,6 @@ Route::post('admin/registration/store', [RegistrationController::class, 'store']
 Route::post('admin/registration/create', [RegistrationController::class, 'create'])->name('admin.registration.create');
 
 Route::resource('registration', RegistrationController::class);
+// Route::get('/events', [RegistrationController::class, 'getEvents']);
+// Route::get('/events/{id}', [RegistrationController::class, 'getEventDetails']);
+Route::get('/events', [RegistrationController::class, 'getAllEvents']);

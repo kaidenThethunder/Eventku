@@ -20,7 +20,7 @@ class RegistrationController extends Controller
     public function create()
     {
         $events = Event::all();
-        
+
         return view('admin.registrations.create', compact('events'));
     }
 
@@ -58,5 +58,36 @@ class RegistrationController extends Controller
     {
         $registration->delete();
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil dihapus!');
+    }
+
+    // public function getEvents()
+    // {
+    //     $events = Event::select('id', 'nama_event')->get();
+
+    //     return response()->json($events);
+    // }
+
+    // public function getEventDetails($id)
+    // {
+    //     $event = Event::findOrFail($id);
+
+    //     return response()->json([
+    //         'ticket_price' => $event->harga_tiket,
+    //         'description' => $event->deskripsi,
+    //     ]);
+    // }
+
+    public function getAllEvents()
+    {
+        $events = Event::all([
+            'id',
+            'nama_event',
+            'harga_tiket',
+            'deskripsi',
+            'lokasi_event',
+            'tanggal'
+        ]);
+
+        return response()->json($events);
     }
 }
