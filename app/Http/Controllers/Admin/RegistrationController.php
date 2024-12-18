@@ -20,6 +20,7 @@ class RegistrationController extends Controller
     public function create()
     {
         $events = Event::all();
+        
         return view('admin.registrations.create', compact('events'));
     }
 

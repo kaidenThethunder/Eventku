@@ -21,6 +21,7 @@ Route::view('/login', 'login')->name('login.form');
 Route::view('/register', 'register');
 Route::view('/kelolaevent', '/admin/kelola_event');
 Route::view('/tambahevent', '/admin/tambah_event');
+Route::view('/daftarevent', '/user/daftar_event');
 
 // Dashboard Routes
 Route::middleware(['auth'])->group(function () {
@@ -46,3 +47,9 @@ Route::post('events', [EventController::class, 'store'])->name('admin.event.stor
 Route::get('index', [EventController::class, 'index'])->name('admin.event.index');
 
 Route::resource('admin/events', EventController::class);
+
+
+Route::post('admin/registration/store', [RegistrationController::class, 'store'])->name('admin.registration.store');
+Route::post('admin/registration/create', [RegistrationController::class, 'create'])->name('admin.registration.create');
+
+Route::resource('registration', RegistrationController::class);

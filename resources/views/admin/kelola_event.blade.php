@@ -26,10 +26,10 @@
                 </div>
 
                 <div class="link-nav d-flex flex-column align-items-center text-white w-100">
-                    <a class="text-white border-bottom w-100" href="/index">Dashboard</a>
+                    <a class="text-white border-bottom w-100" href="/dashboard_admin">Dashboard</a>
                     <a class="text-white border-bottom w-100" href="/tambahevent">Tambah Event</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Kelola Event</a>
-                    <a class="text-white border-bottom w-100" href="javascript:void(0);">Partisipan</a>
+                    <a class="text-white border-bottom w-100" href="/index">Kelola Event</a>
+                    <a class="text-white border-bottom w-100" href="#">Partisipan</a>
                 </div>
             </div>
 
