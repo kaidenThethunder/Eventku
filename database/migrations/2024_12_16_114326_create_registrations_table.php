@@ -14,9 +14,14 @@ class CreateRegistrationsTable extends Migration
     public function up()
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->id('id_registrasi');  // Primary key
-            $table->foreignId('id')->constrained('users');  // Foreign key to users table
-            $table->foreignId('id_event')->constrained('events');  // Foreign key to events table
+            $table->id('id_registrasi');
+            $table->foreignId('id')->constrained('users');
+            $table->foreignId('id_event')->constrained('events');
+            $table->string('nama_event');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->decimal('harga_tiket', 10, 2);
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

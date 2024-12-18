@@ -81,13 +81,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Home</a>
+                            <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Daftar Event</a>
+                            <a class="nav-link" href="#">Daftar Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Lihat Event</a>
+                            <a class="nav-link" href="#">Lihat Event</a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -113,41 +113,45 @@
         </nav>
 
 
-        <div id="daftar-event" class="content">
+        <div id="daftar-event" class="content d-flex justify-content-center align-items-center">
             <div class="container mt-5">
                 <div class="card p-4">
                     <h5 class="fw-bold text-center mb-4">Daftar Event</h5>
-                    <!-- <form onsubmit="showConfirmation(event)" method="post" action="{{ route('admin.registration.store') }}"> -->
-                        @csrf
+                    <form onsubmit="showConfirmation(event)">
                         <div class="mb-3">
                             <label for="eventName" class="form-label">Pilih Event</label>
-                            <select class="form-control" id="eventName" name="eventName" onchange="updateTicketPrice()">
-                                <option value="" data-price="">Pilih Event</option>
-                                <!-- @foreach ($events as $event)
-                                    <option value="{{ $event->id }}" data-price="{{ $event->ticket_price }}">{{ $event->nama_event }}</option>
-                                @endforeach -->
+                            <select class="form-control" id="eventName">
+                                <option value="" disabled selected>Pilih salah satu</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address" name="address">
+                            <input type="text" class="form-control" id="address">
                         </div>
                         <div class="mb-3">
                             <label for="ticketPrice" class="form-label">Harga Tiket</label>
-                            <input type="text" class="form-control" id="ticketPrice" name="ticketPrice" disabled>
-                            <input type="hidden" class="form-control" id="status" name="status" value="Pending" disabled>
+                            <input type="text" class="form-control" id="ticketPrice" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="LokasiEvent" class="form-label">Lokasi Event</label>
+                            <input type="text" class="form-control" id="LokasiEvent" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tanggal" class="form-label">Tanggal</label>
+                            <input type="text" class="form-control" id="Tanggal" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi Event</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" rows="3" disabled></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-primary w-100">Daftar Event</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -158,12 +162,12 @@
                 <div class="card p-4">
                     <h5 class="fw-bold text-center mb-4">Detail Event</h5>
                     <div class="confirmation-text">
-                        <p><span>Nama Event :</span><span id="confirmEventName"></span></p>
-                        <p><span>Nama Peserta :</span><span id="confirmName"></span></p>
-                        <p><span>Alamat :</span><span id="confirmAddress"></span></p>
-                        <p><span>Harga :</span><span id="confirmTicketPrice"></span></p>
-                        <p><span>Lokasi Event :</span><span id="confirmLocation"></span></p>
-                        <p><span>Tanggal :</span><span id="confirmDate"></span></p>
+                        <p><span>Nama Event :</span><span id="confirmEventName">Konser MCR</span></p>
+                        <p><span>Nama Peserta :</span><span id="confirmName">Rico Adrian</span></p>
+                        <p><span>Alamat :</span><span id="confirmAddress">Baruga</span></p>
+                        <p><span>Harga :</span><span id="confirmTicketPrice">Rp. 700.000</span></p>
+                        <p><span>Lokasi Event :</span><span id="confirmLocation">GBK</span></p>
+                        <p><span>Tanggal :</span><span id="confirmDate">27 Januari 2025</span></p>
                     </div>
                     <div class="confirmation-text-left">
                         <p>*untuk melakukan pembayaran hubungi admin</p>
@@ -177,6 +181,7 @@
             </div>
         </div>
 
+
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
@@ -188,33 +193,102 @@
 
             function showConfirmation(event) {
                 event.preventDefault();
-                
-                // Ambil nilai dari inputan form
-                const eventName = document.getElementById('eventName').value;
+                const eventName = document.getElementById('eventName');
+                const selectedEventText = eventName.options[eventName.selectedIndex].textContent;
                 const name = document.getElementById('name').value;
                 const address = document.getElementById('address').value;
                 const ticketPrice = document.getElementById('ticketPrice').value;
+                const location = document.getElementById('LokasiEvent').value;
+                const date = document.getElementById('Tanggal').value;
 
-                // Masukkan nilai ke dalam modal
-                document.getElementById('confirmEventName').textContent = eventName;
+                document.getElementById('confirmEventName').textContent = selectedEventText;
                 document.getElementById('confirmName').textContent = name;
                 document.getElementById('confirmAddress').textContent = address;
-                document.getElementById('confirmTicketPrice').textContent = `Rp. ${ticketPrice}`;
-                
+                document.getElementById('confirmTicketPrice').textContent = ticketPrice;
+                document.getElementById('confirmLocation').textContent = location;
+                document.getElementById('confirmDate').textContent = date;
 
-                // Tampilkan modal
                 showContent('confirmation');
             }
 
-            function updateTicketPrice() {
-                // Ambil elemen dropdown event
-                const eventDropdown = document.getElementById('eventName');
-                // Ambil harga tiket dari atribut data-price pada opsi yang dipilih
-                const selectedOption = eventDropdown.options[eventDropdown.selectedIndex];
-                const ticketPrice = selectedOption.getAttribute('data-price');
-                // Tampilkan harga tiket pada input harga tiket
-                document.getElementById('ticketPrice').value = ticketPrice ? `Rp. ${ticketPrice}` : '';
-            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const eventSelect = document.getElementById('eventName');
+                const ticketPriceInput = document.getElementById('ticketPrice');
+                const locationInput = document.getElementById('LokasiEvent');
+                const dateInput = document.getElementById('Tanggal');
+                const descriptionTextarea = document.getElementById('description');
+
+                let eventsData = []; // Untuk menyimpan data event
+
+                // Fetch semua data event
+                fetch('/events')
+                    .then(response => response.json())
+                    .then(data => {
+                        eventsData = data; // Simpan data ke dalam cache
+
+                        // Tambahkan opsi ke dropdown
+                        data.forEach(event => {
+                            const option = document.createElement('option');
+                            option.value = event.id; // Gunakan ID sebagai value
+                            option.textContent = event.nama_event; // Nama event sebagai teks
+                            eventSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching events:', error);
+                    });
+
+                // Update harga tiket dan deskripsi saat pilihan berubah
+                eventSelect.addEventListener('change', function() {
+                    const selectedEventId = eventSelect.value;
+
+                    if (selectedEventId) {
+                        // Cari data event yang sesuai berdasarkan ID
+                        const selectedEvent = eventsData.find(event => event.id == selectedEventId);
+
+                        if (selectedEvent) {
+                            ticketPriceInput.value =
+                                `Rp. ${new Intl.NumberFormat('id-ID').format(selectedEvent.harga_tiket)}`;
+                            locationInput.value = selectedEvent.lokasi_event;
+                            dateInput.value = selectedEvent.tanggal;
+                            descriptionTextarea.value = selectedEvent.deskripsi;
+                        }
+                    } else {
+                        // Reset jika tidak ada pilihan
+                        ticketPriceInput.value = '';
+                        descriptionTextarea.value = '';
+                    }
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const waButton = document.querySelector('.btn-success');
+
+                waButton.addEventListener('click', function() {
+                    const eventName = document.getElementById('confirmEventName').textContent;
+                    const name = document.getElementById('confirmName').textContent;
+                    const address = document.getElementById('confirmAddress').textContent;
+                    const ticketPrice = document.getElementById('confirmTicketPrice').textContent;
+                    const location = document.getElementById('confirmLocation').textContent;
+                    const date = document.getElementById('confirmDate').textContent;
+
+                    // Format pesan ke Markdown style key:value
+                    const message = `*Detail Event*\n` +
+                        `*Nama Event:* ${eventName}\n` +
+                        `*Nama Peserta:* ${name}\n` +
+                        `*Alamat:* ${address}\n` +
+                        `*Harga:* ${ticketPrice}\n` +
+                        `*Lokasi Event:* ${location}\n` +
+                        `*Tanggal:* ${date}`;
+
+                    // Encode pesan dan buat link WhatsApp
+                    const waLink = `https://wa.me/+6282255244513?text=${encodeURIComponent(message)}`;
+
+                    // Redirect ke WhatsApp
+                    window.location.href = waLink;
+                });
+            });
         </script>
     </body>
 

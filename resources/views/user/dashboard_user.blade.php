@@ -84,7 +84,7 @@
                             <a class="nav-link" href="#" onclick="showContent('home')">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showContent('daftar-event')">Daftar Event</a>
+                            <a class="nav-link" href="/daftarevent">Daftar Event</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showContent('lihat-event')">Lihat Event</a>
