@@ -22,6 +22,7 @@ Route::view('/register', 'register');
 Route::view('/kelolaevent', '/admin/kelola_event');
 Route::view('/tambahevent', '/admin/tambah_event');
 Route::view('/daftarevent', '/user/daftar_event');
+Route::view('/partisipan', '/admin/partisipan');
 
 // Dashboard Routes
 Route::middleware(['auth'])->group(function () {
@@ -48,9 +49,15 @@ Route::get('index', [EventController::class, 'index'])->name('admin.event.index'
 
 Route::resource('admin/events', EventController::class);
 
-
+Route::post('admin/registration/index', [RegistrationController::class, 'index'])->name('admin.registration.index');
 Route::post('admin/registration/store', [RegistrationController::class, 'store'])->name('admin.registration.store');
 Route::post('admin/registration/create', [RegistrationController::class, 'create'])->name('admin.registration.create');
+
+Route::resource('registration', RegistrationController::class);
+
+Route::get('admin/partisipan', [RegistrationController::class, 'indexpartisipan'])->name('admin.partisipan.index');
+Route::delete('/partisipan/{id}', [RegistrationController::class, 'destroypartisipan'])->name('admin.partisipan.destroy');
+Route::post('/partisipan/update', [RegistrationController::class, 'updatepartisipan'])->name('admin.partisipan.update');
 
 Route::resource('registration', RegistrationController::class);
 // Route::get('/events', [RegistrationController::class, 'getEvents']);

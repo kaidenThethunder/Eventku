@@ -85,20 +85,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($registrations as $registration)
                                         <tr>
-                                            <td>Rico Adrian Naibaho</td>
-                                            <td>GBK</td>
-                                            <td>27 Januari 2024</td>
-                                            <td>Konser MCR</td>
-                                            <td>Sudah Bayar</td>
+                                            <td>{{ $registration->nama }}</td>
+                                            <td>{{ $registration->lokasi_event }}</td>
+                                            <td>{{ $registration->event->tanggal ?? '-' }}</td>
+                                            <td>{{ $registration->event->nama_event ?? '-' }}</td>
+                                            <td>{{ $registration->status }}</td>
                                             <td class="action-icons">
                                                 <button class="btn-edit rounded-3" data-bs-toggle="modal"
-                                                    data-bs-target="#editPartisipanModal"><img src="pencil.svg"
-                                                        alt="Edit" style="width: 20px; height: 20px;"></button>
-                                                <button class="btn-hapus rounded-3"><img src="delete.svg"
-                                                        alt="hapus" style="width: 20px; height: 20px;"></button>
+                                                    data-bs-target="#editPartisipanModal" 
+                                                    data-id="{{ $registration->id_registrasi }}" 
+                                                    data-name="{{ $registration->nama }}" 
+                                                    data-address="{{ $registration->alamat }}" 
+                                                    data-status="{{ $registration->status }}">
+                                                    <img src="pencil.svg" alt="Edit" style="width: 20px; height: 20px;">
+                                                </button>
+                                                <form action="{{ route('admin.partisipan.destroy', $registration->id_registrasi) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn-hapus rounded-3"><img src="delete.svg"
+                                                            alt="hapus" style="width: 20px; height: 20px;"></button>
+                                                </form>
                                             </td>
                                         </tr>
+                                    @endforeach
                                         <!-- Tambahkan data lainnya jika perlu -->
                                     </tbody>
                                 </table>

@@ -117,39 +117,47 @@
             <div class="container mt-5">
                 <div class="card p-4">
                     <h5 class="fw-bold text-center mb-4">Daftar Event</h5>
-                    <form onsubmit="showConfirmation(event)">
-                        <div class="mb-3">
+                    <form onsubmit="showConfirmation(event)" method="post" action="{{ route('admin.registration.store') }}">
+                        @csrf
+                    <div class="mb-3">
                             <label for="eventName" class="form-label">Pilih Event</label>
-                            <select class="form-control" id="eventName">
+                            <select class="form-control" id="eventName" name="nama_event">
                                 <option value="" disabled selected>Pilih salah satu</option>
                             </select>
                         </div>
-
+                        
+                            
+                       
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="nama" value="{{ Auth::user()->username }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address">
+                            <input type="text" class="form-control" id="address" name="alamat">
                         </div>
                         <div class="mb-3">
                             <label for="ticketPrice" class="form-label">Harga Tiket</label>
-                            <input type="text" class="form-control" id="ticketPrice" disabled>
+                            
+                            <input type="text" class="form-control" id="ticketPrice" name="harga_tiket" readonly>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="LokasiEvent" class="form-label">Lokasi Event</label>
-                            <input type="text" class="form-control" id="LokasiEvent" disabled>
+                            <input type="text" class="form-control" id="LokasiEvent" name="LokasiEvent" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="Tanggal" class="form-label">Tanggal</label>
-                            <input type="text" class="form-control" id="Tanggal" disabled>
+                            <input type="text" class="form-control" id="Tanggal" name="tanggal" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi Event</label>
-                            <textarea class="form-control" id="description" rows="3" disabled></textarea>
+                            <textarea class="form-control" id="description" rows="3" name="deskripsi" readonly></textarea>
                         </div>
-
+                        <input type="hidden" class="form-control" id="id_event" name="event_id">
+                        <input type="hidden" class="form-control" id="iduser" name="id_user" value="{{ Auth::user()->id_user }}" >
+                        <input type="hidden" class="form-control" id="nameevent" name="nama_event">
+                        <input type="hidden" class="form-control" id="status" name="status" value="pending">
                         <button type="submit" class="btn btn-primary w-100">Daftar Event</button>
                     </form>
                 </div>
@@ -192,7 +200,7 @@
             }
 
             function showConfirmation(event) {
-                event.preventDefault();
+                
                 const eventName = document.getElementById('eventName');
                 const selectedEventText = eventName.options[eventName.selectedIndex].textContent;
                 const name = document.getElementById('name').value;
@@ -200,6 +208,7 @@
                 const ticketPrice = document.getElementById('ticketPrice').value;
                 const location = document.getElementById('LokasiEvent').value;
                 const date = document.getElementById('Tanggal').value;
+                const status = document.getElementById('status').value;
 
                 document.getElementById('confirmEventName').textContent = selectedEventText;
                 document.getElementById('confirmName').textContent = name;
@@ -207,12 +216,15 @@
                 document.getElementById('confirmTicketPrice').textContent = ticketPrice;
                 document.getElementById('confirmLocation').textContent = location;
                 document.getElementById('confirmDate').textContent = date;
+                document.getElementById('confirmStatus').textContent = status;
 
                 showContent('confirmation');
+                
             }
 
 
             document.addEventListener('DOMContentLoaded', function() {
+                
                 const eventSelect = document.getElementById('eventName');
                 const ticketPriceInput = document.getElementById('ticketPrice');
                 const locationInput = document.getElementById('LokasiEvent');
@@ -248,11 +260,18 @@
                         const selectedEvent = eventsData.find(event => event.id == selectedEventId);
 
                         if (selectedEvent) {
-                            ticketPriceInput.value =
-                                `Rp. ${new Intl.NumberFormat('id-ID').format(selectedEvent.harga_tiket)}`;
+                            const idEventInput = document.getElementById('id_event');
+                            idEventInput.value = selectedEvent.id;
+                            const hargaTiket = selectedEvent.harga_tiket;
+                            ticketPriceInput.value = selectedEvent.harga_tiket;
                             locationInput.value = selectedEvent.lokasi_event;
                             dateInput.value = selectedEvent.tanggal;
                             descriptionTextarea.value = selectedEvent.deskripsi;
+
+                            const nameEventInput = document.getElementById('nameevent');
+                            nameEventInput.value = selectedEvent.nama_event;
+
+                            
                         }
                     } else {
                         // Reset jika tidak ada pilihan

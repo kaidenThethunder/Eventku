@@ -20,6 +20,8 @@ class CreateRegistrationsTable extends Migration
             $table->string('nama_event');
             $table->string('nama');
             $table->string('alamat');
+            $table->string('status');
+            $table->string('lokasi_event');
             $table->decimal('harga_tiket', 10, 2);
             $table->text('deskripsi');
             $table->timestamps();

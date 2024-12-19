@@ -25,6 +25,14 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
+            session([
+                'user' => [
+                    'id' => $user->id_user,
+                    'username' => $user->username,
+                    'role' => $user->role,
+                ],
+            ]);
+
             // Redirect berdasarkan role
             if ($user->role === 'admin') {
                 return redirect()->route('dashboard_admin');
@@ -47,6 +55,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        session()->forget('user');
+    
         Auth::logout();
 
         // return response()->json([

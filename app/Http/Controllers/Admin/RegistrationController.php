@@ -10,10 +10,15 @@ use Illuminate\Http\Request;
 class RegistrationController extends Controller
 {
     // Menampilkan daftar partisipan
+    public function indexpartisipan()
+    {
+        $registrations = Registration::with('event')->get();
+        return view('admin.partisipan', compact('registrations'));
+    }
     public function index()
     {
         $registrations = Registration::with('event')->get();
-        return view('admin.registrations.index', compact('registrations'));
+        return view('admin.registration.index', compact('registrations'));
     }
 
     // Menampilkan form pendaftaran untuk event
@@ -21,15 +26,23 @@ class RegistrationController extends Controller
     {
         $events = Event::all();
 
-        return view('admin.registrations.create', compact('events'));
+        return view('admin.registration.create', compact('events'));
     }
 
     // Menyimpan data registrasi partisipan
     public function store(Request $request)
     {
+        
         Registration::create([
-            'id_user' => $request->user_id,
+            'id' => $request->user_id,
             'id_event' => $request->event_id,
+            'status' => $request->status,
+            'alamat' => $request->alamat,
+            'nama' => $request->nama,
+            'nama_event' => $request->nama_event,
+            'lokasi_event' => $request->LokasiEvent,
+            'harga_tiket' => $request->harga_tiket,
+            'deskripsi' => $request->deskripsi
         ]);
 
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil!');
@@ -48,10 +61,23 @@ class RegistrationController extends Controller
         $registration->update([
             'id_user' => $request->user_id,
             'id_event' => $request->event_id,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil diupdate!');
     }
+    public function updatepartisipan(Request $request)
+    {
+        $registration = Registration::find($request->id);
+        $registration->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.partisipan.index')->with('success', 'Data berhasil diperbarui');
+    }
+
 
     // Menghapus registrasi partisipan
     public function destroy(Registration $registration)
@@ -59,6 +85,13 @@ class RegistrationController extends Controller
         $registration->delete();
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil dihapus!');
     }
+    public function destroypartisipan($id)
+{
+    $registration = Registration::findOrFail($id);
+    $registration->delete();
+
+    return redirect()->route('admin.partisipan.index')->with('success', 'Data berhasil dihapus');
+}
 
     // public function getEvents()
     // {
