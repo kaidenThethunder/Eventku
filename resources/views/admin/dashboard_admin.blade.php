@@ -37,7 +37,8 @@
                     <a class="text-white border-bottom w-100" href="/dashboard_admin">Dashboard</a>
                     <a class="text-white border-bottom w-100" href="/tambahevent">Tambah Event</a>
                     <a class="text-white border-bottom w-100" href="/index">Kelola Event</a>
-                    <a class="text-white border-bottom w-100" href="{{route('admin.partisipan.index')}}">Partisipan</a>
+                    <a class="text-white border-bottom w-100"
+                        href="{{ route('admin.partisipan.index') }}">Partisipan</a>
                 </div>
             </div>
 
@@ -74,14 +75,14 @@
                                 <div class="card rounded d-flex flex-column align-items-center gap-5 "
                                     style="padding:5rem ;">
                                     <h5 class="title">Jumlah Event</h5>
-                                    <p class="value">1</p>
+                                    <p class="value">{{ $totalEvents }}</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 mt-5 rounded-5">
                                 <div class="card rounded d-flex flex-column align-items-center gap-5 "
                                     style="padding:5rem ;">
                                     <h5 class="title">Partisipan</h5>
-                                    <p class="value">1</p>
+                                    <p class="value">{{ $totalParticipans }}</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 mt-5 rounded-5">
@@ -94,39 +95,39 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </section>
 
-        
 
 
-            // document.querySelectorAll('.btn-edit').forEach(button => {
-            // button.addEventListener('click', function () {
-            //     // Contoh data yang bisa Anda ambil dari tabel
-            //     const row = this.closest('tr');
-            //     const eventName = row.cells[0].innerText;
-            //     const eventLocation = row.cells[1].innerText;
-            //     const eventDate = row.cells[2].innerText;
-            //     const eventPrice = row.cells[3].innerText;
-            //     const eventDescription = row.cells[4].innerText;
 
-            //     // Isi data ke dalam form di modal
-            //     document.getElementById('editEventName').value = eventName;
-            //     document.getElementById('editEventLocation').value = eventLocation;
-            //     document.getElementById('editEventDate').value = eventDate;
-            //     document.getElementById('editEventPrice').value = eventPrice;
-            //     document.getElementById('editEventDescription').value = eventDescription;
-            // });
-            // });
+        // document.querySelectorAll('.btn-edit').forEach(button => {
+        // button.addEventListener('click', function () {
+        // // Contoh data yang bisa Anda ambil dari tabel
+        // const row = this.closest('tr');
+        // const eventName = row.cells[0].innerText;
+        // const eventLocation = row.cells[1].innerText;
+        // const eventDate = row.cells[2].innerText;
+        // const eventPrice = row.cells[3].innerText;
+        // const eventDescription = row.cells[4].innerText;
 
-            // Tambahkan event listener untuk tombol simpan perubahan
-            document.getElementById('editEventForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                alert('Perubahan berhasil disimpan!');
-                // Tambahkan logika untuk menyimpan perubahan ke database atau memperbarui tabel
-            });
+        // // Isi data ke dalam form di modal
+        // document.getElementById('editEventName').value = eventName;
+        // document.getElementById('editEventLocation').value = eventLocation;
+        // document.getElementById('editEventDate').value = eventDate;
+        // document.getElementById('editEventPrice').value = eventPrice;
+        // document.getElementById('editEventDescription').value = eventDescription;
+        // });
+        // });
+
+        // Tambahkan event listener untuk tombol simpan perubahan
+        document.getElementById('editEventForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Perubahan berhasil disimpan!');
+        // Tambahkan logika untuk menyimpan perubahan ke database atau memperbarui tabel
+        });
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

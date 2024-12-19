@@ -118,18 +118,19 @@
                     <div class="col-md-6">
                         <div class="card text-center p-4">
                             <h5 class="fw-bold">Jumlah Event</h5>
-                            <h1 class="display-4">1</h1>
+                            <h1 class="display-4">{{ $totalEvents }}</h1>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card text-center p-4">
                             <h5 class="fw-bold">Jumlah Event Yang di Daftar</h5>
-                            <h1 class="display-4">1</h1>
+                            <h1 class="display-4">{{ $totalRegisteredEvents }}</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div id="daftar-event" class="content">
             <div class="container mt-5">
