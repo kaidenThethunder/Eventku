@@ -26,8 +26,8 @@ Route::view('/partisipan', '/admin/partisipan');
 
 // Dashboard Routes
 Route::middleware(['auth'])->group(function () {
-    Route::view('/dashboard_admin', '/admin/dashboard_admin')->name('dashboard_admin');
-    Route::view('/', '/user/dashboard_user')->name('dashboard_user');
+    Route::get('/', [RegistrationController::class, 'dbevent'])->name('user.dashboard');
+    Route::get('/dashboard_admin', [RegistrationController::class, 'dbeventadmin'])->name('admin.dashboard');
 });
 
 // Authentication Routes
@@ -55,11 +55,11 @@ Route::post('admin/registration/create', [RegistrationController::class, 'create
 
 Route::resource('registration', RegistrationController::class);
 
-Route::get('admin/partisipan', [RegistrationController::class, 'indexpartisipan'])->name('admin.partisipan.index');
+Route::get('/admin/partisipan', [RegistrationController::class, 'index'])->name('admin.partisipan.index');
 Route::delete('/partisipan/{id}', [RegistrationController::class, 'destroypartisipan'])->name('admin.partisipan.destroy');
 Route::post('/partisipan/update', [RegistrationController::class, 'updatepartisipan'])->name('admin.partisipan.update');
 
 Route::resource('registration', RegistrationController::class);
-// Route::get('/events', [RegistrationController::class, 'getEvents']);
-// Route::get('/events/{id}', [RegistrationController::class, 'getEventDetails']);
 Route::get('/events', [RegistrationController::class, 'getAllEvents']);
+
+Route::get('/listEvents', [RegistrationController::class, 'listEvent'])->name('user.event');

@@ -35,9 +35,9 @@ class AuthController extends Controller
 
             // Redirect berdasarkan role
             if ($user->role === 'admin') {
-                return redirect()->route('dashboard_admin');
+                return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'user') {
-                return redirect()->route('dashboard_user');
+                return redirect()->route('user.dashboard');
             }
         }
 
@@ -56,7 +56,7 @@ class AuthController extends Controller
     public function logout()
     {
         session()->forget('user');
-    
+
         Auth::logout();
 
         // return response()->json([

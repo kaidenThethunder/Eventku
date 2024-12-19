@@ -35,14 +35,6 @@
                 border-radius: 50%;
             }
 
-            .content {
-                display: none;
-            }
-
-            .content.active {
-                display: block;
-            }
-
             .table-container {
                 border-radius: 20px;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -81,13 +73,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Home</a>
+                            <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Daftar Event</a>
+                            <a class="nav-link" href="#">Daftar Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" >Lihat Event</a>
+                            <a class="nav-link" href="#">Lihat Event</a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -112,7 +104,7 @@
             </div>
         </nav>
 
-        
+
 
         <div id="lihat-event" class="content">
             <div class="container mt-5">
@@ -128,20 +120,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Konser MCR</td>
-                                <td>GBK</td>
-                                <td>27 Januari 2025</td>
-                                <td>700000</td>
-                                <td>Konser Band Legendaris</td>
-                            </tr>
+                            @forelse ($events as $event)
+                                <tr>
+                                    <td>{{ $event->nama_event }}</td>
+                                    <td>{{ $event->lokasi_event }}</td>
+                                    <td>{{ $event->tanggal }}</td>
+                                    <td>Rp. {{ number_format($event->harga_tiket, 0, ',', '.') }}</td>
+                                    <td>{{ $event->deskripsi }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">Tidak ada event dengan status sukses</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        
+
+
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
         <script>

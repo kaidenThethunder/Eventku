@@ -9,17 +9,45 @@ use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
-    // Menampilkan daftar partisipan
-    public function indexpartisipan()
+    public function dbeventadmin()
     {
-        $registrations = Registration::with('event')->get();
-        return view('admin.partisipan', compact('registrations'));
+        $totalEvents = Event::count();
+        $totalParticipans = Registration::distinct('id')->count('id');
+
+        return view('admin.dashboard_admin', compact('totalEvents', 'totalParticipans'));
     }
+
+    public function dbevent()
+    {
+        // Hitung jumlah event
+        $totalEvents = Event::count();
+
+        // Hitung jumlah event yang didaftar
+        $totalRegisteredEvents = Registration::count();
+
+        // Kirim data ke view
+        return view('user.dashboard_user', compact('totalEvents', 'totalRegisteredEvents'));
+    }
+
+    // Menampilkan daftar partisipan
+    public function listEvent()
+    {
+        // Ambil data event dengan status 'success'
+        $events = Registration::where('status', 'success')->get();
+
+        // Kirim data ke view
+        return view('user.lihat_event', compact('events'));
+    }
+
     public function index()
     {
         $registrations = Registration::with('event')->get();
-        return view('admin.registration.index', compact('registrations'));
+        // dd($registrations); // Debug data
+        // dd($registrations->first()->event);
+
+        return view('admin.partisipan', compact('registrations'));
     }
+
 
     // Menampilkan form pendaftaran untuk event
     public function create()
@@ -32,9 +60,9 @@ class RegistrationController extends Controller
     // Menyimpan data registrasi partisipan
     public function store(Request $request)
     {
-        
+
         Registration::create([
-            'id' => $request->user_id,
+            'id' => $request->id,
             'id_event' => $request->event_id,
             'status' => $request->status,
             'alamat' => $request->alamat,
@@ -45,7 +73,7 @@ class RegistrationController extends Controller
             'deskripsi' => $request->deskripsi
         ]);
 
-        return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil!');
+        return view('user.daftar_event');
     }
 
     // Menampilkan form untuk mengedit registrasi partisipan
@@ -86,29 +114,12 @@ class RegistrationController extends Controller
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil dihapus!');
     }
     public function destroypartisipan($id)
-{
-    $registration = Registration::findOrFail($id);
-    $registration->delete();
+    {
+        $registration = Registration::findOrFail($id);
+        $registration->delete();
 
-    return redirect()->route('admin.partisipan.index')->with('success', 'Data berhasil dihapus');
-}
-
-    // public function getEvents()
-    // {
-    //     $events = Event::select('id', 'nama_event')->get();
-
-    //     return response()->json($events);
-    // }
-
-    // public function getEventDetails($id)
-    // {
-    //     $event = Event::findOrFail($id);
-
-    //     return response()->json([
-    //         'ticket_price' => $event->harga_tiket,
-    //         'description' => $event->deskripsi,
-    //     ]);
-    // }
+        return redirect()->route('admin.partisipan.index')->with('success', 'Data berhasil dihapus');
+    }
 
     public function getAllEvents()
     {

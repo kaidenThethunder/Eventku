@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dashboard Admin</title>
-        <link rel="stylesheet" href="./assets/css/DashboardStyle.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +12,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet">
-        <style>
-            .content {
-                display: none;
-            }
-
-            .content.active {
-                display: block;
-            }
-        </style>
+        <link rel="stylesheet" href="../../assets/css/DashboardStyle.css">
     </head>
 
     <body>
@@ -29,7 +20,7 @@
             <div class="d-flex flex-column align-items-center text-white"
                 style="width: 20rem; background-color:#006B95;">
                 <div class="navbar d-flex justify-content-center gap-2 border-bottom w-100" style="height: 125px;">
-                    <img src="./assets/IconSidebar.svg" alt="" />
+                    <img src="../../assets/IconSidebar.svg" alt="" />
                     <div>Eventku</div>
                 </div>
 
@@ -62,7 +53,7 @@
                                 </form>
                             </ul>
                         </div>
-                        <img src="logoprofil.svg" alt="Profile Logo" class="profile-logo">
+                        <img src="../../logoprofil.svg" alt="Profile Logo" class="profile-logo">
                     </div>
                 </div>
 
@@ -85,37 +76,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($registrations as $registration)
-                                        <tr>
-                                            <td>{{ $registration->nama }}</td>
-                                            <td>{{ $registration->lokasi_event }}</td>
-                                            <td>{{ $registration->event->tanggal ?? '-' }}</td>
-                                            <td>{{ $registration->event->nama_event ?? '-' }}</td>
-                                            <td>{{ $registration->status }}</td>
-                                            <td class="action-icons">
-                                                <button class="btn-edit rounded-3" data-bs-toggle="modal"
-                                                    data-bs-target="#editPartisipanModal" 
-                                                    data-id="{{ $registration->id_registrasi }}" 
-                                                    data-name="{{ $registration->nama }}" 
-                                                    data-address="{{ $registration->alamat }}" 
-                                                    data-status="{{ $registration->status }}">
-                                                    <img src="pencil.svg" alt="Edit" style="width: 20px; height: 20px;">
-                                                </button>
-                                                <form action="{{ route('admin.partisipan.destroy', $registration->id_registrasi) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn-hapus rounded-3"><img src="delete.svg"
-                                                            alt="hapus" style="width: 20px; height: 20px;"></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                        <!-- Tambahkan data lainnya jika perlu -->
+                                        @forelse ($registrations as $registration)
+                                            <tr>
+                                                <td>{{ $registration->nama }}</td>
+                                                <td>{{ $registration->event->lokasi_event ?? '-' }}</td>
+                                                <td>{{ $registration->event->tanggal ?? '-' }}</td>
+                                                <td>{{ $registration->event->nama_event ?? '-' }}</td>
+                                                <td>{{ $registration->status }}</td>
+                                                <td class="action-icons">
+                                                    <button class="btn-edit rounded-3" data-bs-toggle="modal"
+                                                        data-bs-target="#editPartisipanModal"
+                                                        data-id="{{ $registration->id_registrasi }}"
+                                                        data-name="{{ $registration->nama }}"
+                                                        data-address="{{ $registration->alamat }}"
+                                                        data-status="{{ $registration->status }}">
+                                                        <img src="../../pencil.svg" alt="Edit"
+                                                            style="width: 20px; height: 20px;">
+                                                    </button>
+                                                    <form
+                                                        action="{{ route('admin.partisipan.destroy', $registration->id_registrasi) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn-hapus rounded-3">
+                                                            <img src="../../delete.svg" alt="Hapus"
+                                                                style="width: 20px; height: 20px;">
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Tidak ada data partisipan</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="modal fade" id="editPartisipanModal" tabindex="-1"
                         aria-labelledby="editPartisipanModalLabel" aria-hidden="true">
@@ -151,13 +152,13 @@
                         </div>
                     </div>
 
-                    
+
 
                 </div>
             </div>
         </section>
 
-        
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
