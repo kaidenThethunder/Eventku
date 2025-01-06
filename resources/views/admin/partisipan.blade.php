@@ -131,23 +131,28 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="editPartisipanForm" method="POST" action="{{ route('admin.partisipan.update', $registration->id_registrasi) }}">
-                                    @csrf
-                                    
+                                    <!-- Update Form -->
+                                    <form id="editPartisipanForm" method="POST">
+                                        @csrf
+                                        @method('PUT') <!-- Ensure the correct HTTP method is used for updating -->
+
+                                        <input type="hidden" id="editPartisipanId" name="id_registrasi">
+
                                         <div class="mb-3">
                                             <input type="text" class="form-control" id="editPartisipanName"
-                                                placeholder="Masukkan Nama Partisipan" name="nama" value="{{ $registration->nama }}" readonly required>
+                                                placeholder="Masukkan Nama Partisipan" name="nama" readonly
+                                                required>
                                         </div>
                                         <div class="mb-3">
                                             <input type="text" class="form-control" id="editPartisipanAlamat"
-                                                placeholder="Alamat Partisipan" name="alamat" value="{{ $registration->alamat }}" readonly  required>
+                                                placeholder="Alamat Partisipan" name="alamat" readonly required>
                                         </div>
                                         <div class="mb-3">
-                                            <select class="form-control" id="editPartisipanStatus" name="status" required>
+                                            <select class="form-control" id="editPartisipanStatus" name="status"
+                                                required>
                                                 <option value="" disabled selected>Pilih Status</option>
-                                                <option value="pending">pending</option>
-                                                <option value="success">success</option>
-                                                
+                                                <option value="pending">Pending</option>
+                                                <option value="success">Success</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
@@ -157,8 +162,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
             </div>
         </section>
@@ -167,6 +170,39 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const editButtons = document.querySelectorAll('.btn-edit');
+
+                // Loop through all the edit buttons
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Get data attributes from the button
+                        const registrationId = this.getAttribute('data-id');
+                        const name = this.getAttribute('data-name');
+                        const address = this.getAttribute('data-address');
+                        const status = this.getAttribute('data-status');
+
+                        // Set the values in the modal form
+                        document.getElementById('editPartisipanId').value = registrationId;
+                        document.getElementById('editPartisipanName').value = name;
+                        document.getElementById('editPartisipanAlamat').value = address;
+
+                        // Set the status in the select dropdown
+                        const statusDropdown = document.getElementById('editPartisipanStatus');
+                        for (let option of statusDropdown.options) {
+                            if (option.value === status) {
+                                option.selected = true;
+                            }
+                        }
+
+                        // Set the form action to the correct update route
+                        const form = document.getElementById('editPartisipanForm');
+                        form.action = `/admin/partisipan/update/${registrationId}`;
+                    });
+                });
+            });
         </script>
     </body>
 
