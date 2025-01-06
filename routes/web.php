@@ -58,6 +58,7 @@ Route::resource('registrations', RegistrationController::class);
 Route::get('/admin/partisipan', [RegistrationController::class, 'index'])->name('admin.partisipan.index');
 Route::delete('/partisipan/{id}', [RegistrationController::class, 'destroypartisipan'])->name('admin.partisipan.destroy');
 Route::post('/partisipan/update/{id}', [RegistrationController::class, 'updatepartisipan'])->name('admin.partisipan.update');
+Route::put('/admin/partisipan/update/{id}', [RegistrationController::class, 'updatenewevent'])->name('admin.partisipan.update');
 
 Route::resource('registration', RegistrationController::class);
 Route::get('/events', [RegistrationController::class, 'getAllEvents']);

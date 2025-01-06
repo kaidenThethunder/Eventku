@@ -104,6 +104,7 @@ class RegistrationController extends Controller
 
         return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil diupdate!');
     }
+
     public function updatepartisipan(Request $request)
     {
         $registration = Registration::find($request->id);
@@ -115,6 +116,25 @@ class RegistrationController extends Controller
 
         return redirect()->route('admin.partisipan.index')->with('success', 'Data berhasil diperbarui');
     }
+
+    public function updatenewevent(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'status' => 'required|in:pending,success',  // Validation for status
+        ]);
+
+        // Find the participant by ID
+        $registration = Registration::findOrFail($id);
+
+        // Update the status
+        $registration->status = $request->status;
+        $registration->save();
+
+        // Redirect back with a success message
+        return redirect()->route('admin.partisipan.index')->with('success', 'Status updated successfully!');
+    }
+
 
 
     // Menghapus registrasi partisipan
