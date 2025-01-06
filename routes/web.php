@@ -63,3 +63,5 @@ Route::resource('registration', RegistrationController::class);
 Route::get('/events', [RegistrationController::class, 'getAllEvents']);
 
 Route::get('/listEvents', [RegistrationController::class, 'listEvent'])->name('user.event');
+
+Route::get('/user/details/{id_registrasi}', [RegistrationController::class, 'showDetails'])->name('user.details');

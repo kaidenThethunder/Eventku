@@ -80,7 +80,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
@@ -117,8 +117,7 @@
             <div class="container mt-5">
                 <div class="card p-4">
                     <h5 class="fw-bold text-center mb-4">Daftar Event</h5>
-                    <form onsubmit="showConfirmation(event)" method="post"
-                        action="{{ route('admin.registration.store') }}">
+                    <form onsubmit="showConfirmation(event)" method="post" action="{{ route('registration.store') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="eventName" class="form-label">Pilih Event</label>
@@ -166,32 +165,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div id="confirmation" class="content">
-            <div class="container mt-5">
-                <div class="card p-4">
-                    <h5 class="fw-bold text-center mb-4">Detail Event</h5>
-                    <div class="confirmation-text">
-                        <p><span>Nama Event :</span><span id="confirmEventName"></span></p>
-                        <p><span>Nama Peserta :</span><span id="confirmName"></span></p>
-                        <p><span>Alamat :</span><span id="confirmAddress"></span></p>
-                        <p><span>Harga :</span><span id="confirmTicketPrice"></span></p>
-                        <p><span>Lokasi Event :</span><span id="confirmLocation"></span></p>
-                        <p><span>Tanggal :</span><span id="confirmDate"></span></p>
-                    </div>
-                    <div class="confirmation-text-left">
-                        <p>*untuk melakukan pembayaran hubungi admin</p>
-                    </div>
-                    <div class="text-center mt-3">
-                        <a href="#" class="btn btn-success w-100">
-                            <img src="logowa.svg" alt="WhatsApp">Lanjutkan Pembayaran
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
@@ -284,33 +257,33 @@
                 });
             });
 
-            document.addEventListener('DOMContentLoaded', function() {
-                const waButton = document.querySelector('.btn-success');
+            // document.addEventListener('DOMContentLoaded', function() {
+            //     const waButton = document.querySelector('.btn-success');
 
-                waButton.addEventListener('click', function() {
-                    const eventName = document.getElementById('confirmEventName').textContent;
-                    const name = document.getElementById('confirmName').textContent;
-                    const address = document.getElementById('confirmAddress').textContent;
-                    const ticketPrice = document.getElementById('confirmTicketPrice').textContent;
-                    const location = document.getElementById('confirmLocation').textContent;
-                    const date = document.getElementById('confirmDate').textContent;
+            //     waButton.addEventListener('click', function() {
+            //         const eventName = document.getElementById('confirmEventName').textContent;
+            //         const name = document.getElementById('confirmName').textContent;
+            //         const address = document.getElementById('confirmAddress').textContent;
+            //         const ticketPrice = document.getElementById('confirmTicketPrice').textContent;
+            //         const location = document.getElementById('confirmLocation').textContent;
+            //         const date = document.getElementById('confirmDate').textContent;
 
-                    // Format pesan ke Markdown style key:value
-                    const message = `*Detail Event*\n` +
-                        `*Nama Event:* ${eventName}\n` +
-                        `*Nama Peserta:* ${name}\n` +
-                        `*Alamat:* ${address}\n` +
-                        `*Harga:* ${ticketPrice}\n` +
-                        `*Lokasi Event:* ${location}\n` +
-                        `*Tanggal:* ${date}`;
+            //         // Format pesan ke Markdown style key:value
+            //         const message = `*Detail Event*\n` +
+            //             `*Nama Event:* ${eventName}\n` +
+            //             `*Nama Peserta:* ${name}\n` +
+            //             `*Alamat:* ${address}\n` +
+            //             `*Harga:* ${ticketPrice}\n` +
+            //             `*Lokasi Event:* ${location}\n` +
+            //             `*Tanggal:* ${date}`;
 
-                    // Encode pesan dan buat link WhatsApp
-                    const waLink = `https://wa.me/+6282255244513?text=${encodeURIComponent(message)}`;
+            //         // Encode pesan dan buat link WhatsApp
+            //         const waLink = `https://wa.me/+6282255244513?text=${encodeURIComponent(message)}`;
 
-                    // Redirect ke WhatsApp
-                    window.location.href = waLink;
-                });
-            });
+            //         // Redirect ke WhatsApp
+            //         window.location.href = waLink;
+            //     });
+            // });
         </script>
     </body>
 

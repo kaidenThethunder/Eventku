@@ -18,7 +18,7 @@ class RegistrationController extends Controller
 
         // Menghitung jumlah event yang sudah selesai
         $finishedEvents = Event::where('tanggal', '<', $today)->count();
-        return view('admin.dashboard_admin', compact('totalEvents', 'totalParticipans','finishedEvents'));
+        return view('admin.dashboard_admin', compact('totalEvents', 'totalParticipans', 'finishedEvents'));
     }
 
     public function dbevent()
@@ -62,10 +62,12 @@ class RegistrationController extends Controller
     }
 
     // Menyimpan data registrasi partisipan
+    // In your RegistrationController
+
     public function store(Request $request)
     {
-
-        Registration::create([
+        // Store the data to the database
+        $registration = Registration::create([
             'id' => $request->id,
             'id_event' => $request->event_id,
             'status' => $request->status,
@@ -77,8 +79,12 @@ class RegistrationController extends Controller
             'deskripsi' => $request->deskripsi
         ]);
 
-        return view('user.daftar_event');
+        // Redirect to the details page with the id_registrasi
+        return redirect()->route('user.details', ['id_registrasi' => $registration->id_registrasi]);
     }
+
+
+
 
     // Menampilkan form untuk mengedit registrasi partisipan
     public function edit(Registration $registration)
@@ -137,5 +143,19 @@ class RegistrationController extends Controller
         ]);
 
         return response()->json($events);
+    }
+
+    public function showDetails($id_registrasi)
+    {
+        // Retrieve the registration using the provided id
+        $registration = Registration::find($id_registrasi);
+
+        // Check if registration exists
+        if (!$registration) {
+            return redirect()->route('user.event')->with('error', 'Registration not found.');
+        }
+
+        // Pass the registration data to the view
+        return view('user.details', compact('registration'));
     }
 }
