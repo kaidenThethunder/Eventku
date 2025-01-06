@@ -89,7 +89,7 @@
                                 <div class="card rounded d-flex flex-column align-items-center gap-5 "
                                     style="padding:5rem ;">
                                     <h5 class="title">Event yang Selesai</h5>
-                                    <p class="value">0</p>
+                                    <p class="value">{{ $finishedEvents }}</p>
                                 </div>
                             </div>
                         </div>

@@ -28,7 +28,8 @@
                     <a class="text-white border-bottom w-100" href="/dashboard_admin">Dashboard</a>
                     <a class="text-white border-bottom w-100" href="/tambahevent">Tambah Event</a>
                     <a class="text-white border-bottom w-100" href="/index">Kelola Event</a>
-                    <a class="text-white border-bottom w-100" href="#">Partisipan</a>
+                    <a class="text-white border-bottom w-100"
+                        href="{{ route('admin.partisipan.index') }}">Partisipan</a>
                 </div>
             </div>
 
@@ -67,6 +68,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th scope="col">Id Registrasi</th>
                                             <th>Nama Partisipan</th>
                                             <th>Lokasi</th>
                                             <th>Tanggal</th>
@@ -78,6 +80,7 @@
                                     <tbody>
                                         @forelse ($registrations as $registration)
                                             <tr>
+                                                <td>{{ $registration->id_registrasi }}</td>
                                                 <td>{{ $registration->nama }}</td>
                                                 <td>{{ $registration->event->lokasi_event ?? '-' }}</td>
                                                 <td>{{ $registration->event->tanggal ?? '-' }}</td>
@@ -128,21 +131,23 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="editPartisipanForm">
+                                    <form id="editPartisipanForm" method="POST" action="{{ route('admin.partisipan.update', $registration->id_registrasi) }}">
+                                    @csrf
+                                    
                                         <div class="mb-3">
                                             <input type="text" class="form-control" id="editPartisipanName"
-                                                placeholder="Masukkan Nama Partisipan" required>
+                                                placeholder="Masukkan Nama Partisipan" name="nama" value="{{ $registration->nama }}" readonly required>
                                         </div>
                                         <div class="mb-3">
                                             <input type="text" class="form-control" id="editPartisipanAlamat"
-                                                placeholder="Alamat Partisipan" required>
+                                                placeholder="Alamat Partisipan" name="alamat" value="{{ $registration->alamat }}" readonly  required>
                                         </div>
                                         <div class="mb-3">
-                                            <select class="form-control" id="editPartisipanStatus" required>
+                                            <select class="form-control" id="editPartisipanStatus" name="status" required>
                                                 <option value="" disabled selected>Pilih Status</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="sudah_bayar">Sudah Bayar</option>
-                                                <option value="batal">Batal</option>
+                                                <option value="pending">pending</option>
+                                                <option value="success">success</option>
+                                                
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>

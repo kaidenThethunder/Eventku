@@ -36,7 +36,7 @@
             }
 
             .content {
-                display: none;
+                display: active;
             }
 
             .content.active {
@@ -71,7 +71,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
             <div class="container">
                 <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                    <img src="logo.svg" alt="Logo">
+                    <img src="./logo.svg" alt="Logo">
                     EVENTKU
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -80,14 +80,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                    <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Daftar Event</a>
+                            <a class="nav-link" href="/daftarevent">Daftar Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Lihat Event</a>
+                            <a class="nav-link" href="/listEvents">Lihat Event</a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -173,12 +173,12 @@
                 <div class="card p-4">
                     <h5 class="fw-bold text-center mb-4">Detail Event</h5>
                     <div class="confirmation-text">
-                        <p><span>Nama Event :</span><span id="confirmEventName">Konser MCR</span></p>
-                        <p><span>Nama Peserta :</span><span id="confirmName">Rico Adrian</span></p>
-                        <p><span>Alamat :</span><span id="confirmAddress">Baruga</span></p>
-                        <p><span>Harga :</span><span id="confirmTicketPrice">Rp. 700.000</span></p>
-                        <p><span>Lokasi Event :</span><span id="confirmLocation">GBK</span></p>
-                        <p><span>Tanggal :</span><span id="confirmDate">27 Januari 2025</span></p>
+                        <p><span>Nama Event :</span><span id="confirmEventName"></span></p>
+                        <p><span>Nama Peserta :</span><span id="confirmName"></span></p>
+                        <p><span>Alamat :</span><span id="confirmAddress"></span></p>
+                        <p><span>Harga :</span><span id="confirmTicketPrice"></span></p>
+                        <p><span>Lokasi Event :</span><span id="confirmLocation"></span></p>
+                        <p><span>Tanggal :</span><span id="confirmDate"></span></p>
                     </div>
                     <div class="confirmation-text-left">
                         <p>*untuk melakukan pembayaran hubungi admin</p>

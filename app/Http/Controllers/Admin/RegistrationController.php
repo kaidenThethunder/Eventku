@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Registration;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -13,8 +14,11 @@ class RegistrationController extends Controller
     {
         $totalEvents = Event::count();
         $totalParticipans = Registration::distinct('id')->count('id');
+        $today = carbon::now()->toDateString(); // Mendapatkan tanggal hari ini
 
-        return view('admin.dashboard_admin', compact('totalEvents', 'totalParticipans'));
+        // Menghitung jumlah event yang sudah selesai
+        $finishedEvents = Event::where('tanggal', '<', $today)->count();
+        return view('admin.dashboard_admin', compact('totalEvents', 'totalParticipans','finishedEvents'));
     }
 
     public function dbevent()

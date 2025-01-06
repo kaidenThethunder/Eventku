@@ -53,11 +53,11 @@ Route::post('admin/registration/index', [RegistrationController::class, 'index']
 Route::post('admin/registration/store', [RegistrationController::class, 'store'])->name('admin.registration.store');
 Route::post('admin/registration/create', [RegistrationController::class, 'create'])->name('admin.registration.create');
 
-Route::resource('registration', RegistrationController::class);
+Route::resource('registrations', RegistrationController::class);
 
 Route::get('/admin/partisipan', [RegistrationController::class, 'index'])->name('admin.partisipan.index');
 Route::delete('/partisipan/{id}', [RegistrationController::class, 'destroypartisipan'])->name('admin.partisipan.destroy');
-Route::post('/partisipan/update', [RegistrationController::class, 'updatepartisipan'])->name('admin.partisipan.update');
+Route::post('/partisipan/update/{id}', [RegistrationController::class, 'updatepartisipan'])->name('admin.partisipan.update');
 
 Route::resource('registration', RegistrationController::class);
 Route::get('/events', [RegistrationController::class, 'getAllEvents']);

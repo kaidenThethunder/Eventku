@@ -81,13 +81,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showContent('home')">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/daftarevent">Daftar Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showContent('lihat-event')">Lihat Event</a>
+                            <a class="nav-link" href="/listEvents">Lihat Event</a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -132,88 +132,9 @@
         </div>
 
 
-        <div id="daftar-event" class="content">
-            <div class="container mt-5">
-                <div class="card p-4">
-                    <h5 class="fw-bold text-center mb-4">Daftar Event</h5>
-                    <form onsubmit="showConfirmation(event)">
-                        <div class="mb-3">
-                            <label for="eventName" class="form-label">Masukkan Nama Event</label>
-                            <input type="text" class="form-control" id="eventName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address">
-                        </div>
-                        <div class="mb-3">
-                            <label for="ticketPrice" class="form-label">Harga Tiket</label>
-                            <input type="text" class="form-control" id="ticketPrice">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Deskripsi Event</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Daftar Event</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+     
 
-        <div id="lihat-event" class="content">
-            <div class="container mt-5">
-                <div class="table-container">
-                    <table class="table table-bordered text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Nama Event</th>
-                                <th>Lokasi</th>
-                                <th>Tanggal</th>
-                                <th>Harga Tiket</th>
-                                <th>Deskripsi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Konser MCR</td>
-                                <td>GBK</td>
-                                <td>27 Januari 2025</td>
-                                <td>700000</td>
-                                <td>Konser Band Legendaris</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="confirmation" class="content">
-            <div class="container mt-5">
-                <div class="card p-4">
-                    <h5 class="fw-bold text-center mb-4">Detail Event</h5>
-                    <div class="confirmation-text">
-                        <p><span>Nama Event :</span><span id="confirmEventName">Konser MCR</span></p>
-                        <p><span>Nama Peserta :</span><span id="confirmName">Rico Adrian</span></p>
-                        <p><span>Alamat :</span><span id="confirmAddress">Baruga</span></p>
-                        <p><span>Harga :</span><span id="confirmTicketPrice">Rp. 700.000</span></p>
-                        <p><span>Lokasi Event :</span><span id="confirmLocation">GBK</span></p>
-                        <p><span>Tanggal :</span><span id="confirmDate">27 Januari 2025</span></p>
-                    </div>
-                    <div class="confirmation-text-left">
-                        <p>*untuk melakukan pembayaran hubungi admin</p>
-                    </div>
-                    <div class="text-center mt-3">
-                        <a href="#" class="btn btn-success w-100">
-                            <img src="logowa.svg" alt="WhatsApp">Lanjutkan Pembayaran
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+      
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
         <script>

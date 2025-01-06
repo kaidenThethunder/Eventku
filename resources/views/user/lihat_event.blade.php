@@ -72,14 +72,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                    <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Daftar Event</a>
+                            <a class="nav-link" href="/daftarevent">Daftar Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Lihat Event</a>
+                            <a class="nav-link" href="/listEvents">Lihat Event</a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
